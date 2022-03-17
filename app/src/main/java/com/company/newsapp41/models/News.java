@@ -1,4 +1,4 @@
-package com.company.models;
+package com.company.newsapp41.models;
 
 import java.io.Serializable;
 

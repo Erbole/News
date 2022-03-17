@@ -35,8 +35,9 @@ public class ProfileFragment extends Fragment {
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri result) {
-            if(result != null);
+            if(result != null){
             binding.imageView.setImageURI(result);
+            }
         }
     });
 }
