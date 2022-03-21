@@ -46,6 +46,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (adapter.getItemCount() != 0) {
+            binding.homeText.setVisibility(View.GONE);
+            Log.e("Home", "invisible");
+
+        } else {
+            binding.homeText.setVisibility(View.VISIBLE);
+            Log.e("Home", "visible");
+        }
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +62,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
@@ -61,8 +70,7 @@ public class HomeFragment extends Fragment {
                 Log.e("Home", "text getted = " + news.getTitle());
                 if (isEditing) {
                     adapter.insertItem(news, index);
-                }
-                else {
+                } else {
                     adapter.addItem(news);
                 }
             }
@@ -108,7 +116,7 @@ public class HomeFragment extends Fragment {
     private void open(News news) {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("editTask" ,news );
+        bundle.putSerializable("editTask", news);
         navController.navigate(R.id.newsFragment, bundle);
     }
 

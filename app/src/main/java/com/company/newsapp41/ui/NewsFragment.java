@@ -20,7 +20,6 @@ import com.company.newsapp41.models.News;
 import com.company.newsapp41.R;
 import com.company.newsapp41.databinding.FragmentNewsBinding;
 
-
 public class NewsFragment extends Fragment {
     private FragmentNewsBinding binding;
     private News news;
@@ -46,7 +45,6 @@ public class NewsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         news = (News) requireArguments().getSerializable("editTask");
         if (news != null) {
             binding.editText.setText(news.getTitle());

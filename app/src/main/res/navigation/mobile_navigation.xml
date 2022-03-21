@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.company.newsapp41.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home"
+            app:destination="@+id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -33,5 +37,12 @@
         android:id="@+id/newsFragment"
         android:name="com.company.newsapp41.ui.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news"/>
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.company.newsapp41.ui.board.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
+
+
 </navigation>
