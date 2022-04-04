@@ -2,127 +2,154 @@ package com.company.newsapp41.ui.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.company.newsapp41.NewsAdapter;
-import com.company.newsapp41.interfaces.OnItemClickListener;
-import com.company.newsapp41.models.News;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.company.newsapp41.App;
+import com.company.newsapp41.OnClick;
 import com.company.newsapp41.R;
+import com.company.newsapp41.adapter.ProfileAdapter;
 import com.company.newsapp41.databinding.FragmentHomeBinding;
+import com.company.newsapp41.model.Model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private NewsAdapter adapter;
-    private int index;
-    private boolean isEditing = false;
+    private ProfileAdapter adapter;
+    private boolean isChanged = false;
+    private int position;
+    Model model;
+    private List<Model> list = new ArrayList<>();
 
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new NewsAdapter();
+        setHasOptionsMenu(true);
+        adapter = new ProfileAdapter();
+        adapter.addList(App.getDataBase().newsDao().getAll());
+    }
+
+    public HomeFragment() {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (adapter.getItemCount() != 0) {
-            binding.homeText.setVisibility(View.GONE);
-            Log.e("Home", "invisible");
-
-        } else {
-            binding.homeText.setVisibility(View.VISIBLE);
-            Log.e("Home", "visible");
-        }
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                isEditing = false;
-                open(null);
-            }
-        });
-
-
-        getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                News news = (News) result.getSerializable("news");
-                Log.e("Home", "text getted = " + news.getTitle());
-                if (isEditing) {
-                    adapter.insertItem(news, index);
-                } else {
-                    adapter.addItem(news);
-                }
-            }
-        });
-
-        binding.recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                News news = adapter.getItem(position);
-                isEditing = true;
-                open(news);
-                HomeFragment.this.index = position;
-            }
-
-            @Override
-            public void onItemLongClick(int position) {
-                deleteNewsDialog(position);
-            }
-        });
-    }
-
-    private void deleteNewsDialog(int position) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle("Вы уверены что хотите удалить данную запись?");
-        builder.setMessage(adapter.getItem(position).getTitle());
-        builder.setPositiveButton("Удалить", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                adapter.removeItem(position);
-            }
-        });
-        builder.setNegativeButton("Отменить", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    private void open(News news) {
-        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("editTask", news);
-        navController.navigate(R.id.newsFragment, bundle);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isChanged = false;
+                open(null);
+            }
+        });
+
+        binding.searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void afterTextChanged(Editable editable) {
+                list = App.getDataBase().newsDao().getSearch(editable.toString());
+                adapter.addList(list);
+            }
+        });
+
+        binding.recycleView.setAdapter(adapter);
+        list = App.getDataBase().newsDao().sortAll();
+        adapter.addList(list);
+
+        getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                Model model = (Model) result.getSerializable("model");
+                Log.e("Home", "text = " + model.getTitle());
+                if (isChanged) adapter.updateItem(model, position);
+                else adapter.addItem(model);
+
+            }
+        });
+        binding.recycleView.setAdapter(adapter);
+
+
+        adapter.setOnClickListener(new OnClick() {
+            @Override
+            public void onClick(int position) {
+                model = adapter.getItem(position);
+                isChanged = true;
+                open(model);
+                HomeFragment.this.position = position;
+            }
+
+            @Override
+            public void onLongClick(int position) {
+                new AlertDialog.Builder(getContext()).setTitle("Delete").setMessage("Вы уверены что хотите удалить?").
+                        setNegativeButton("Отмена", null).setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        model = adapter.getItem(position);
+                        adapter.deleteItem(position);
+                        App.getDataBase().newsDao().deleteTask(model);
+                        adapter.notifyDataSetChanged();
+                    }
+                }).show();
+            }
+        });
+    }
+
+    private void open(Model model) {
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("update", model);
+        navController.navigate(R.id.newsFragment, bundle);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.sort){
+            adapter.setData(App.getDataBase().newsDao().sort());
+//            binding.recycleView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

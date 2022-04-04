@@ -5,9 +5,14 @@
       <map>
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/de.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/drawable_de.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_add.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_baseline_add.xml" value="0.1325" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1325" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1325" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/ic_person.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/tab_indicator_select.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/tab_indictor_def.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/drawable/tab_selector.xml" value="1.0" />
@@ -16,10 +21,15 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/fragment_home.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/fragment_news.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/item_news.xml" value="0.22447916666666667" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/pager_board.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/item_profile.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/pager_board.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/layout/shot_item.xml" value="0.10916919959473151" />
         <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/menu/news_menu.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/menu/profile_menu.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/NewsApp41/app/src/main/res/menu/settings_menu.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>
