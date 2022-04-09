@@ -49,7 +49,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
             holder.binding.getRoot().setBackgroundColor(Color.GRAY);
         }
         else {
-            holder.binding.getRoot().setBackgroundColor(Color.CYAN);
+            holder.binding.getRoot().setBackgroundColor(Color.DKGRAY);
         }
     }
 

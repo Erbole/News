@@ -47,18 +47,6 @@ public class MainActivity extends AppCompatActivity {
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-               /* List<Integer> list;
-                list = new ArrayList<>();
-                list.add(R.id.navigation_home);
-                list.add(R.id.navigation_dashboard);
-                list.add(R.id.navigation_notifications);
-                list.add(R.id.profileFragment);
-                if (list.contains(navDestination.getId())){
-                    binding.navView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    binding.navView.setVisibility(View.INVISIBLE);
-                }*/
                 if (navDestination.getId() == R.id.boardFragment) {
                     binding.navView.setVisibility(View.GONE);
                     getSupportActionBar().hide();

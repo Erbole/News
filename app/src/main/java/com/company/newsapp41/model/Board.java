@@ -4,6 +4,7 @@ public class Board {
     private String title;
     private String desc;
 
+
     public Board(String title, String desc) {
         this.title = title;
         this.desc = desc;

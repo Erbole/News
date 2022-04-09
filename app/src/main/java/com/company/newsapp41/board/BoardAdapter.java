@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -19,13 +20,14 @@ import java.util.ArrayList;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHolder> {
     private ArrayList<Board> list;
+    private Button btn_start;
     private int[] lottie = new int[]{R.raw.city, R.raw.city, R.raw.city};
 
     public BoardAdapter() {
         list = new ArrayList<>();
-        list.add(new Board("Name", "Rustam"));
-        list.add(new Board("Name", "Rustam"));
-        list.add(new Board("Name", "Rustam"));
+        list.add(new Board("Качок Доге и плачущий Чимс", "Мемом с собаками породы сиба-ину пользователи сравнивали настоящий момент и прошлое. Победа всегда на стороне Доге, и он, как правило, олицетворяет прошедшие времена"));
+        list.add(new Board("Танцующие носильщики гробов", "Танцующие с гробом темнокожие парни были популярны практически весь год. Первые смешные видео с их участием появились в конце февраля. Популярность они набрали в связи с новостями о коронавирусе."));
+        list.add(new Board("Наташ, ты спишь?", "Мем «Наташ, ты спишь» стал абсолютным хитом в апреле: с его помощью шутили про коронавирус, самоизоляцию, цифровые пропуска. Потом, в течение года, используя этот шаблон, пользователи обращались к самым разным темам. Этот мем — народный, по мнению Максима Корнева, хотя его и быстро «затаскали» все, кому не лень."));
     }
 
     @NonNull

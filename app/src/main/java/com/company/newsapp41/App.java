@@ -13,7 +13,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        dataBase = Room.databaseBuilder(this, AppDataBase.class, "database").allowMainThreadQueries().build();
+        dataBase = Room.databaseBuilder(this, AppDataBase.class
+                , "database")
+                .allowMainThreadQueries().build();
     }
 
     public static AppDataBase getDataBase() {

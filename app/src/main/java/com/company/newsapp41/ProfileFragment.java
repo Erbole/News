@@ -108,6 +108,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Glide.with(requireContext()).load(uri).circleCrop().into(binding.imageView);
+        Glide.with(requireContext())
+                .load(uri)
+                .circleCrop()
+                .into(binding.imageView);
     }
 }
